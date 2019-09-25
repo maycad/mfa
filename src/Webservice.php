@@ -39,7 +39,7 @@ abstract class WebService implements MFAService
 
     public function setData(array $data = array())
     {
-        if (is_array($data) && (count($data) >= 4)) {
+        if (is_array($data)) {
             $this->data = $data;
         } else {
             throw new \Exception("Error Processing Request", 1);
