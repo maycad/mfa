@@ -1,0 +1,33 @@
+{
+    "name": "maycad/mfa",
+    "description": "Money Transfer",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "mfa",
+        "money",
+        "money transfer"
+    ],
+    "authors": [
+        {
+            "name": "richejoy",
+            "email": "richejoy314@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.5",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {
+            "MayCad\\MFA\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    }
+}
