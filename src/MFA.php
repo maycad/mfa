@@ -29,6 +29,15 @@ class MFA extends WebService
         return json_decode($req->getBody());
 	}
 
+	public function register()
+	{
+		$req = $this->getClient()->post('users/create', [
+            'form_params' => $this->getData(),
+        ]);
+
+        return json_decode($req->getBody());
+	}
+
 	public function process()
 	{
 		if (! is_null($this->getData())) {
