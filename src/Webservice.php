@@ -8,39 +8,26 @@ use GuzzleHttp\Client;
  */
 abstract class WebService implements MFAService
 {
-	private $client;
-    private $data = array();
+	private $_client;
+    private $_credentials = array();
+    private $_params = array();
 
 	const BASE_URI = 'http://localhost/maycad/webservices/mfa/public/';
 
-    public function __construct(array $data = array())
+    public function __construct(array $credentials = array())
     {
-    	$this->setClient([
+        $this->setCredentials($credentials);
+
+        $this->setClient([
             'base_uri' => $this->getBaseUri(),
+            'headers' => $this->getCredentials(),
         ]);
-
-        $this->setData($data);
     }
 
-    public function setClient(array $data = array())
+    public function setCredentials(array $credentials = array())
     {
-    	$this->client = new Client($data);
-    }
-
-    public function getClient()
-    {
-        return $this->client;
-    }
-
-    public function getBaseUri()
-    {
-    	return self::BASE_URI;
-    }
-
-    public function setData(array $data = array())
-    {
-        if (is_array($data)) {
-            $this->data = $data;
+        if (is_array($credentials)) {
+            $this->_credentials = $credentials;
         } else {
             throw new \Exception("Error Processing Request", 1);
         }
@@ -48,8 +35,90 @@ abstract class WebService implements MFAService
         return $this;
     }
 
-    public function getData()
+    public function getCredentials()
     {
-        return $this->data;
+        return $this->_credentials;
+    }
+
+    public function setParams(array $params = array())
+    {
+        if (is_array($params)) {
+            $this->_params = $params;
+        } else {
+            throw new \Exception("Error Processing Request", 1);
+        }
+
+        return $this;
+    }
+
+    public function getParams()
+    {
+        return $this->_params;
+    }
+
+    public function setClient(array $config = array())
+    {
+    	$this->_client = new Client($config);
+    }
+
+    public function getClient()
+    {
+        return $this->_client;
+    }
+
+    public function getBaseUri()
+    {
+    	return self::BASE_URI;
+    }
+
+    private function getData(array $params = array())
+    {
+        return array_merge($params, $this->getParams());
+    }
+
+    /**/
+    public function transfer(array $params = array())
+    {
+        $req = $this->getClient()->post('operations/transfer', [
+                'form_params' => $this->getData($params),
+        ]);
+
+        return json_decode($req->getBody());
+    }
+
+    public function charge(array $params = array())
+    {
+        $req = $this->getClient()->post('operations/charge', [
+                'form_params' => $this->getData($params),
+        ]);
+
+        return json_decode($req->getBody());
+    }
+
+    public function register(array $params = array())
+    {
+        $req = $this->getClient()->post('users/register', [
+            'form_params' => $this->getData($params),
+        ]);
+
+        return json_decode($req->getBody());
+    }
+
+    public function login(array $params = array())
+    {
+        $req = $this->getClient()->post('users/login', [
+            'form_params' => $this->getData($params),
+        ]);
+
+        return json_decode($req->getBody());
+    }
+
+    public function histories(array $params = array())
+    {
+        $req = $this->getClient()->post('histories/create', [
+                'form_params' => $this->getData($params),
+        ]);
+
+        return json_decode($req->getBody());
     }
 }

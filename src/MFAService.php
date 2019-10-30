@@ -7,11 +7,13 @@ namespace MayCad\MFA;
  */
 interface MFAService
 {
-	function register();
+	function transfer(array $params = array());
 	
-	function operations();
+	function charge(array $params = array());
 
-	function histories();
+	function register(array $params = array());
 
-	function process();
+	function login(array $params = array());
+
+	function histories(array $params = array());
 }
