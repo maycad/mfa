@@ -9,7 +9,7 @@ interface MFAService
 {
 	function transfer(array $params = array());
 	
-	function charge(array $params = array());
+	function deposit(array $params = array());
 
 	function withdrawal(array $params = array());
 

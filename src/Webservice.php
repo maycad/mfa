@@ -86,9 +86,9 @@ abstract class WebService implements MFAService
         return json_decode($req->getBody());
     }
 
-    public function charge(array $params = array())
+    public function deposit(array $params = array())
     {
-        $req = $this->getClient()->post('operations/charge', [
+        $req = $this->getClient()->post('operations/deposit', [
                 'form_params' => $this->getData($params),
         ]);
 
@@ -124,7 +124,7 @@ abstract class WebService implements MFAService
 
     public function histories(array $params = array())
     {
-        $req = $this->getClient()->post('histories/create', [
+        $req = $this->getClient()->post('histories/charge', [
                 'form_params' => $this->getData($params),
         ]);
 
