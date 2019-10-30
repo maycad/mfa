@@ -11,6 +11,8 @@ interface MFAService
 	
 	function charge(array $params = array());
 
+	function withdrawal(array $params = array());
+
 	function register(array $params = array());
 
 	function login(array $params = array());

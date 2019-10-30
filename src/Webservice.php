@@ -95,6 +95,15 @@ abstract class WebService implements MFAService
         return json_decode($req->getBody());
     }
 
+    public function withdrawal(array $params = array())
+    {
+        $req = $this->getClient()->post('operations/withdrawal', [
+                'form_params' => $this->getData($params),
+        ]);
+
+        return json_decode($req->getBody());
+    }
+
     public function register(array $params = array())
     {
         $req = $this->getClient()->post('users/register', [
