@@ -13,6 +13,8 @@ interface MFAService
 
 	function withdrawal(array $params = array());
 
+	function balance(array $params = array());
+
 	function confirm(array $params = array());
 
 	function register(array $params = array());

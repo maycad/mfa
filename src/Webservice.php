@@ -80,7 +80,7 @@ abstract class WebService implements MFAService
     public function transfer(array $params = array())
     {
         $req = $this->getClient()->post('operations/transfer', [
-                'form_params' => $this->getData($params),
+            'form_params' => $this->getData($params),
         ]);
 
         return json_decode($req->getBody());
@@ -89,7 +89,7 @@ abstract class WebService implements MFAService
     public function deposit(array $params = array())
     {
         $req = $this->getClient()->post('operations/deposit', [
-                'form_params' => $this->getData($params),
+            'form_params' => $this->getData($params),
         ]);
 
         return json_decode($req->getBody());
@@ -98,7 +98,16 @@ abstract class WebService implements MFAService
     public function withdrawal(array $params = array())
     {
         $req = $this->getClient()->post('operations/withdrawal', [
-                'form_params' => $this->getData($params),
+            'form_params' => $this->getData($params),
+        ]);
+
+        return json_decode($req->getBody());
+    }
+
+    public function balance(array $params = array())
+    {
+        $req = $this->getClient()->post('operations/balance', [
+            'form_params' => $this->getData($params),
         ]);
 
         return json_decode($req->getBody());
@@ -107,7 +116,7 @@ abstract class WebService implements MFAService
     public function confirm(array $params = array())
     {
         $req = $this->getClient()->post('operations/confirm', [
-                'form_params' => $this->getData($params),
+            'form_params' => $this->getData($params),
         ]);
 
         return json_decode($req->getBody());
@@ -134,7 +143,7 @@ abstract class WebService implements MFAService
     public function histories(array $params = array())
     {
         $req = $this->getClient()->post('histories/charge', [
-                'form_params' => $this->getData($params),
+            'form_params' => $this->getData($params),
         ]);
 
         return json_decode($req->getBody());
