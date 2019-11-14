@@ -22,4 +22,8 @@ interface MFAService
 	function login(array $params = array());
 
 	function histories(array $params = array());
+
+	function contact(array $params = array());
+
+	function newsletter(array $params = array());
 }

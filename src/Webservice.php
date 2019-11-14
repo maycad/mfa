@@ -148,4 +148,22 @@ abstract class WebService implements MFAService
 
         return json_decode($req->getBody());
     }
+
+    public function contact(array $params = array())
+    {
+        $req = $this->getClient()->post('contacts/store', [
+            'form_params' => $this->getData($params),
+        ]);
+
+        return json_decode($req->getBody());
+    }
+
+    public function newsletter(array $params = array())
+    {
+        $req = $this->getClient()->post('newsletters/store', [
+            'form_params' => $this->getData($params),
+        ]);
+
+        return json_decode($req->getBody());
+    }
 }
