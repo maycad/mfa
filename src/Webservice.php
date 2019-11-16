@@ -12,7 +12,7 @@ abstract class WebService implements MFAService
     private $_credentials = array();
     private $_params = array();
 
-	const BASE_URI = 'http://localhost/maycad/webservices/mfa/public/';
+	const BASE_URI = 'http://localhost/maycad/apis/mfa/public/';
 
     public function __construct(array $credentials = array())
     {
