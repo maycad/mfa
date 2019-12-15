@@ -12,9 +12,9 @@ abstract class WebService implements MFAService
     private $_credentials = array();
     private $_params = array();
 
-	const BASE_URI = 'http://localhost/maycad/apis/mfa/public/';
+	const BASE_URI = 'https://apis.maycad.net/mfa/v1/public/';
 
-    public function __construct(array $credentials = array())
+    public function __construct(array $credentials)
     {
         $this->setCredentials($credentials);
 
@@ -24,7 +24,7 @@ abstract class WebService implements MFAService
         ]);
     }
 
-    public function setCredentials(array $credentials = array())
+    public function setCredentials(array $credentials)
     {
         if (is_array($credentials)) {
             $this->_credentials = $credentials;
@@ -56,9 +56,11 @@ abstract class WebService implements MFAService
         return $this->_params;
     }
 
-    public function setClient(array $config = array())
+    public function setClient(array $config)
     {
     	$this->_client = new Client($config);
+
+        return $this;
     }
 
     public function getClient()
@@ -140,9 +142,9 @@ abstract class WebService implements MFAService
         return json_decode($req->getBody());
     }
 
-    public function histories(array $params = array())
+    public function transactions(array $params = array())
     {
-        $req = $this->getClient()->post('histories/charge', [
+        $req = $this->getClient()->post('transactions/charge', [
             'form_params' => $this->getData($params),
         ]);
 

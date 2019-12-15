@@ -6,7 +6,7 @@ namespace MayCad\MFA;
  */
 class MFA extends WebService
 {
-	public function __construct(array $credentials = array())
+	public function __construct(array $credentials)
 	{
 		parent::__construct($credentials);
 	}
